@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
 
+import Homepage from "./features/HomePage/Homepage";
+import MainLayout from "./Layout/MainLayout";
+import SubLayout from "./Layout/SubLayout";
+import LightSchedule from "./features/FlightSchedule/FligtSchedule";
+import NotFound from "./features/NotFound/NotFound";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="" element={<MainLayout />}>
+        <Route index element={<Homepage />} />
+      </Route>
+      <Route path="" element={<SubLayout />}>
+        <Route path="/flight-schedule" element={<LightSchedule />} />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
